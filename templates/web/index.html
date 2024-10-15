@@ -1,0 +1,132 @@
+{% extends 'base/base.html' %}
+
+{% block container %}
+
+{% load static %}   
+
+{% include 'include/header.html' %}
+
+<section id="category">
+    <div class="wrapper">
+        <form action="" method="get">
+            <ul class="flex justify-around my-4">
+                <li>
+                    <a href="">
+                        <button type="button" class="text-[20px] font-semibold text-white px-5 py-3 rounded-xl bg-red-600">Default</button>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <button type="button" class="text-[20px] font-semibold text-white px-5 py-3 rounded-xl bg-red-600">Latest</button>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <button type="button" class="text-[20px] font-semibold text-white px-5 py-3 rounded-xl bg-red-600">High-Low</button>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <button type="button" class="text-[20px] font-semibold text-white px-5 py-3 rounded-xl bg-red-600">Low-High</button>
+                    </a>
+                </li>
+            </ul>   
+        </form>
+    </div>
+</section>
+
+<section id="blogs">
+    <div class="wrapper flex justify-between px-8 py-6">
+        <!-- Left Sidebar (Filters) -->
+        <div class="left w-[25%] bg-white p-6 shadow-lg rounded-lg">
+            <h1 class="text-[40px] text-[#f22929] font-bold mb-6">Filter by</h1>
+            <hr class="border-2 mb-4 border-gray-900">
+
+            <!-- Category Filter -->
+            <form action="#" method="get">
+                <div class="mb-6">
+                    <h3 class="text-[20px] font-semibold mb-3">Category</h3>
+                    {% for category in categories %}
+                    <div class="mb-2">
+                        <input type="radio" name="category" value="{{ category.name }}" id="{{ category.name }}" class="mr-2">
+                        <label for="{{ category.name }}">{{ category.name }}</label>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Size Filter -->
+                <div class="mb-6">
+                    <h3 class="text-[20px] font-semibold mb-3">Size</h3>
+                    {% for siz in sizs %}
+                    <div class="mb-2">
+                        <input type="radio" name="size" value="{{ siz.name }}" id="size{{ siz.id }}" class="mr-2">
+                        <label for="size{{ siz.id }}">{{ siz.name }}</label>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Price Filter -->
+                <div class="mb-6">
+                    <h3 class="text-[20px] font-semibold mb-3">Price</h3>
+                    <div class="mb-2">
+                        <input type="radio" name="price" value="100-500" id="price1" class="mr-2">
+                        <label for="price1">100-500</label>
+                    </div>
+                    <div class="mb-2">
+                        <input type="radio" name="price" value="15000-25000" id="price2" class="mr-2">
+                        <label for="price2">15000-25000</label>
+                    </div>
+                    <div class="mb-2">
+                        <input type="radio" name="price" value="25000-50000" id="price3" class="mr-2">
+                        <label for="price3">25000-50000</label>
+                    </div>
+                    <div class="mb-2">
+                        <input type="radio" name="price" value="50000-150000" id="price4" class="mr-2">
+                        <label for="price4">50000-150000</label>
+                    </div>
+                </div>
+
+                <!-- Apply Filter Button -->
+                <div class="mt-6">
+                    <button type="submit" class="text-[18px] font-medium bg-blue-600 text-white px-5 py-2 rounded-xl">Apply Filter</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Vertical Divider -->
+        <div class="border-l-2 border-gray-300 h-auto"></div>
+
+        <!-- Right Section (Products) -->
+        <div class="right w-[70%]">
+            <div class="top grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for product in products %}
+                <div class="product-card border p-6 rounded-lg shadow-lg">
+                    <h2 class="text-[22px] font-semibold mb-2">{{ product.title }}</h2>
+                    <p class="text-[18px] mb-4">{{ product.short_description }}</p>
+                    <img src="{{ product.image.url }}" alt="Product image" class="w-full h-auto mb-4 rounded-md">
+                    <p class="text-[16px]">{{ product.description }}</p>
+                    <ul>
+                        <li>Category: {{ product.category }}</li>
+                        <li>Size: {{ product.sizs }}</li>
+                        <li>Price: ₹{{ product.price }}</li>
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination flex justify-center mt-8">
+                <a href="#" class="mx-1 px-3 py-2 bg-red-600 text-white rounded-lg">1</a>
+                <a href="#" class="mx-1 px-3 py-2 bg-gray-200 text-gray-700 rounded-lg">2</a>
+                <span class="mx-1 px-3 py-2 text-gray-700">...</span>
+                <a href="#" class="mx-1 px-3 py-2 bg-gray-200 text-gray-700 rounded-lg">7</a>
+                <a href="#" class="mx-1 px-3 py-2 bg-gray-200 text-gray-700 rounded-lg">8</a>
+                <a href="#" class="mx-1 px-3 py-2 bg-gray-200 text-gray-700 rounded-lg">9</a>
+                <a href="#" class="mx-1 px-3 py-2 bg-gray-200 text-gray-700 rounded-lg">10</a>
+                <button type="submit" class="mx-1 px-4 py-2 bg-red-600 text-white rounded-lg">Next</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

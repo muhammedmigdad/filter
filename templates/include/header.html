@@ -1,0 +1,28 @@
+{% load static %}
+
+<header class="bg-[#ece3e3] py-4">
+    <div class="wrapper flex justify-between items-center px-6 mx-auto max-w-screen-xl">
+        <!-- Left (Logo) -->
+        <div class="left">
+            <a href="{% url 'web:index' %}">
+                <img src="{% static 'images/logo1.png' %}" alt="logo" class="w-[150px]">
+            </a>
+        </div>
+
+        <!-- Middle (Search Bar) -->
+        <div class="middle flex-1 mx-6">
+            <form action="" method="get" class="relative bg-white flex items-center rounded-full shadow-md">
+                <input 
+                    type="text" 
+                    name="q" 
+                    value="{{ q }}" 
+                    placeholder="Search product..." 
+                    class="w-full py-2 px-4 text-gray-800 rounded-full focus:outline-none"
+                >
+                <button type="submit" class="absolute right-2 bg-transparent">
+                    <img src="{% static 'images/search.png' %}" alt="search" class="w-[20px] h-[20px]">
+                </button>
+            </form>
+        </div>
+    </div>
+</header>
